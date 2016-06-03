@@ -1,0 +1,12 @@
+{
+    "extends": "es-MX",
+    "greeting": "TRANSLATE ME monday june 6",
+    "farewell": "You left on {{aDate:date:d mmm D}}",
+    "today": "TRANSLATE ME",
+    "debt": "TRANSLATE ME",
+    "xyz": {
+        "zero": "no Blahs",
+        "one": "one blah",
+        "many": "blahs"
+    }
+}
