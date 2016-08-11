@@ -14,7 +14,7 @@ const flatten = list => list.reduce(
     (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
 );
 
-export class Check {
+export class Update {
     run(lang, options) {
         //logger.clear();
         logger.spin(`loading config...`);
@@ -46,6 +46,19 @@ export class Check {
                 }
                 logger.info(`missing ${Object.keys(missing).length} keys`);
                 return missing;
+            })
+            .then((missing) => {
+                let file = `${config.dest}/${lang}.json`;
+                let final = Utils.deepen(missing);
+                let current = Utils.readJSON(file);
+                _.defaultsDeep(current, final);
+                let tmp = TRANSLATION(Utils.sortByKeys(current));
+                fs.writeFile(file, tmp, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    logger.warn(`file written to ${file}`);
+                });
             })
             .catch((err)=>{
                 logger.info('broke', err)

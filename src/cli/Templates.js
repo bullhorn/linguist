@@ -1,8 +1,6 @@
 import handlebars from 'handlebars';
 
-const translation = `
-{{toJSON this}}
-`;
+const translation = `{{toJSON this}}`;
 export const TRANSLATION = handlebars.compile(translation);
 
 handlebars.registerHelper('toJSON', function(object) {
