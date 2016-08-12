@@ -2,6 +2,7 @@
 // Core Features
 export * from './cli/Add';
 export * from './cli/Check';
+export * from './cli/Update';
 
 // Staffing Entities
 export * from './utils/Grep';

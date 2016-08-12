@@ -36,15 +36,17 @@ import { Translate } from '../directive/translate.directive';
                     <h2>Pipe</h2>
                     <br>
                     <p><strong>Simple Text</strong></p>
-                    <p>{{ 'greeting' | translate | async }}</p>
+                    <p>{{ 'greeting' | translate }}</p>
                     <p><strong>Variable</strong></p>
-                    <p>{{ 'farewell' | translate:{ name: 'John' } | async }}</p>
+                    <p>{{ 'farewell' | translate:{ name: 'John' } }}</p>
                     <p><strong>Variable Date</strong></p>
-                    <p>{{ 'today' | translate:{ today: localToday } | async }}</p>
+                    <p>{{ 'today' | translate:{ today: localToday } }}</p>
                     <!--<p><strong>Variable Number</strong></p>-->
-                    <!--<p>{{ 'today' | translate:{ today: localToday } | async }}</p>-->
+                    <!--<p>{{ 'today' | translate:{ today: localToday } }}</p>-->
                     <p><strong>Variable Currency</strong></p>
-                    <p>{{ 'debt' | translate:{ balance: demoVariables.balance } | async }}</p>
+                    <p>{{ 'debt' | translate:{ balance: demoVariables.balance } }}</p>
+                    <p><strong>Missing Key</strong></p>
+                    <p>{{ 'missing' | translate:{ balance: demoVariables.balance } }}</p>
                 </div>
                 <!-- DIRECTIVE -->
                 <div class="col-xs-12 col-md-3">

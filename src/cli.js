@@ -10,7 +10,7 @@ program
     .version('0.0.1');
 
 program
-    .command('add [from] [to]')
+    .command('translate [from] [to]')
     .description('Add new translation file')
     .option('-d, --dest <dest>', 'specify localization resources directory.')
     .action((...args) => {

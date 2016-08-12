@@ -31,7 +31,7 @@ export class Check {
         for (let keys of config.keys) {
             promises.push(this.find(new RegExp(keys, 'gi'), config.source));
         }
-        Promise
+        return Promise
             .all(promises)
             .then((data) => {
                 logger.spin(`files checked.`);

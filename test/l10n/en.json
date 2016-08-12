@@ -1,6 +1,6 @@
 {
     "extends": "es-MX",
-    "greeting": "TRANSLATE ME monday june 6",
+    "greeting": "Hello",
     "farewell": "You left on {{aDate:date:d mmm D}}",
     "today": "TRANSLATE ME",
     "debt": "TRANSLATE ME",

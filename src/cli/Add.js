@@ -40,14 +40,15 @@ export class Add {
             );
         }
         logger.spin(`translating...`);
-        Utils.series(promises, 1)
+        return Utils.series(promises, 1)
         .then(() => {
             logger.info(`translated ${vals.length} keys`);
             let file = `${config.dest}/${to}.json`;
             let final = Utils.deepen(obj);
             let current = Utils.readJSON(file);
             _.defaultsDeep(current, final);
-            let tmp = TRANSLATION(Utils.sortByKeys(current));
+            current = Utils.sortByKeys(current);
+            let tmp = TRANSLATION(current);
 
             fs.writeFile(file, tmp, (err) => {
                 if (err) {
@@ -55,6 +56,8 @@ export class Add {
                 }
                 logger.warn(`file written to ${file}`);
             });
+
+            return current;
         }).catch((err)=>{
             logger.info('broke', err)
         });

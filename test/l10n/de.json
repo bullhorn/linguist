@@ -1,0 +1,12 @@
+{
+    "debt": "UEBER ME",
+    "extends": "es-MX",
+    "farewell": "Sie links auf {{aDate: Datum: d mmm D}}",
+    "greeting": "Hallo",
+    "today": "UEBER ME",
+    "xyz": {
+        "many": "blahs",
+        "one": "ein blah",
+        "zero": "keine Blahs"
+    }
+}
