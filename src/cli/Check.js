@@ -22,7 +22,7 @@ export class Check {
             source: './src/**/*',
             dest: './l10n',
             keys: [
-                "{{[^']*[']([^|]+)['][^']*\s*\|\s*translate.*}}",
+                "{{\s?[']([^']+)['][^|]*\|\s?translate[^}]*}}",
                 '<[^>]*translate[^>]*>([^<]*)'
             ]
         }, options));
@@ -44,7 +44,15 @@ export class Check {
                         missing[key] = '**NO TRANSLATION**';
                     }
                 }
-                logger.info(`missing ${Object.keys(missing).length} keys`);
+                if(Object.keys(missing).length){
+                    logger.error(`✗ Missing ${Object.keys(missing).length} keys`);
+                    for ( let key of Object.keys(missing)){
+                        logger.warn(`✗ ${key}`);
+                    }
+                } else {
+                    logger.success(`✔︎ All keys found`);
+                }
+
                 return missing;
             })
             .catch((err)=>{

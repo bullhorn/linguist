@@ -57,7 +57,7 @@ export class Update {
                     if (err) {
                         throw err;
                     }
-                    logger.warn(`file written to ${file}`);
+                    logger.success(`✔︎ file written to ${file}`);
                 });
             })
             .catch((err)=>{

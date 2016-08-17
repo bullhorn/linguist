@@ -54,7 +54,7 @@ export class Add {
                 if (err) {
                     throw err;
                 }
-                logger.warn(`file written to ${file}`);
+                logger.success(`✔︎ translations added to ${file}`);
             });
 
             return current;
