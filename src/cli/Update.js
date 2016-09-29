@@ -1,10 +1,7 @@
 import _ from 'lodash';
-import mkdirp from 'mkdirp';
 import fs from 'fs';
 import rc from 'rc';
-import program from 'commander';
-import fetch from 'node-fetch';
-import { Utils, Lazy } from '../utils/Utils';
+import { Utils } from '../utils/Utils';
 import { LumberJack } from '../utils/LumberJack';
 import { Grep } from '../utils/Grep';
 import { TRANSLATION } from './Templates';
@@ -17,7 +14,7 @@ const flatten = list => list.reduce(
 export class Update {
     run(lang, options) {
         //logger.clear();
-        logger.spin(`loading config...`);
+        logger.spin('loading config...');
         let config = rc('linguist', Object.assign({
             source: './src/**/*',
             dest: './l10n',
@@ -26,7 +23,7 @@ export class Update {
                 '<[^>]*translate[^>]*>([^<]*)'
             ]
         }, options));
-        logger.spin(`checking files`);
+        logger.spin('checking files');
         let promises = [];
         for (let keys of config.keys) {
             promises.push(this.find(new RegExp(keys, 'gi'), config.source));
@@ -34,13 +31,13 @@ export class Update {
         Promise
             .all(promises)
             .then((data) => {
-                logger.spin(`files checked.`);
+                logger.spin('files checked.');
                 let vals = _.uniq(flatten(data)).sort();
                 logger.info(`found ${vals.length} keys`);
                 let defaults = Utils.readJSON(`${config.dest}/${lang}.json`);
                 let missing = {};
                 for (let key of vals) {
-                    if(!_.has(defaults, key)){
+                    if (!_.has(defaults, key)) {
                         missing[key] = '**NO TRANSLATION**';
                     }
                 }
@@ -60,20 +57,20 @@ export class Update {
                     logger.success(`✔︎ file written to ${file}`);
                 });
             })
-            .catch((err)=>{
-                logger.info('broke', err)
+            .catch((err) => {
+                logger.info('broke', err);
             });
     }
 
     find(expression, source) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let read = Grep(expression, source);
             read.on('end', (result) => {
                 let keys = [];
                 for (let file of result) {
                     for (let line of file.data) {
                         let match;
-                        while ((match = expression.exec(line.content)) !== null) {
+                        while ((match = expression.exec(line.content)) !== null) { //eslint-disable-line
                             if (match.index === expression.lastIndex) {
                                 expression.lastIndex++;
                             }

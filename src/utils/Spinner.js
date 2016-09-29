@@ -43,10 +43,13 @@ const PATTERNS = [
 
 //frames = '▁▂▃▄▅▆▇█▇▆▄▂▁'.split('');
 
+
+/**
+ * name elegantSpinner
+ */
 function elegantSpinner(pattern = 0) {
-    let frames = PATTERNS[pattern],
-        i = 0;
-    return function() {
+    let frames = PATTERNS[pattern], i = 0;
+    return () => {
         return frames[i = ++i % frames.length];
     };
 }
@@ -56,18 +59,21 @@ export class Spinner {
         this.interval = null;
     }
 
-    start(message, pattern) {
+    start(message, pattern, clear) {
         let frame = elegantSpinner(pattern);
-        this.stop();
-        this.interval = setInterval( () => {
-            log(chalk.cyan(frame() + ' ' + message));
+        this.stop(clear);
+        this.interval = setInterval(() => {
+            log(chalk.cyan(`${frame()} ${message}`));
         }, 50);
     }
 
-    stop() {
-        if ( this.interval ) {
+    stop(clear) {
+        if (this.interval) {
             clearInterval(this.interval);
-            log.clear();
+            this.interval = null;
+            if (clear) {
+                log.clear();
+            }
         }
     }
 }

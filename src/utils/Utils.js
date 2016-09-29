@@ -1,20 +1,37 @@
 import fs from 'fs';
+import { TRANSLATION } from './Templates';
 
 export class Utils {
 
-    static readJSON(file){
+    static readJSON(file) {
         let data = {};
         try {
             data = JSON.parse(fs.readFileSync(file, 'utf8'));
-        } catch(err) {
+        } catch (err) {
             //Do Nothing
         }
         return data;
     }
 
-    static series(promises, threads=1) {
+    static writeJSON(file, data) {
+        return new Promise((resolve, reject) => {
+            try {
+                let tmp = TRANSLATION(data);
+                fs.writeFile(file, tmp, (err) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve(data);
+                });
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    static series(promises, threads = 1) {
         let results = null;
-        promises = promises.slice();
+        promises = promises.slice(); //eslint-disable-line
         return new Promise((resolve, reject) => {
             /**
              * [next description]

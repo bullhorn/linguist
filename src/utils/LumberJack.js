@@ -33,16 +33,16 @@ export class LumberJack {
         console.log(chalk.green(message), ...params);
     }
 
-    spin( message ) {
+    spin(message) {
         this.stop();
-        this.spinner.start( message );
+        this.spinner.start(message);
     }
 
     stop() {
         this.spinner.stop();
     }
 
-    mark(message){
+    mark(message) {
         this.stop();
         console.log(mark(message));
     }

@@ -30,7 +30,7 @@ class Searcher {
 
         let filter;
 
-        if ('string' === typeof options.pattern) {
+        if (typeof options.pattern === 'string') {
             filter = line => line.indexOf(options.pattern) > -1;
         } else {
             filter = line => options.pattern.test(line);
@@ -59,10 +59,9 @@ class Searcher {
                         content: line
                     });
                 }
-
             });
 
-            rl.on('end', line => {
+            rl.on('end', () => {
                 resultLength -= 1;
 
                 if (temp.data.length) {
@@ -72,7 +71,6 @@ class Searcher {
                 if (resultLength === 0) {
                     this._emit('end', result);
                 }
-
             });
         });
 
@@ -80,7 +78,6 @@ class Searcher {
             if (resultLength === 0) {
                 this._emit('end', result);
             }
-
         });
     }
 
@@ -94,16 +91,19 @@ class Searcher {
     }
 }
 
+/**
+ * name Grep
+ */
 export function Grep(pattern, files) {
     if (pattern === '') {
         throw new Error('pattern is empty');
     }
 
-    if ('string' !== typeof pattern && !(pattern instanceof RegExp)) {
+    if (typeof pattern !== 'string' && !(pattern instanceof RegExp)) {
         throw new Error('pattern is not string and RegExp');
     }
 
-    if ('string' !== typeof files) {
+    if (typeof files !== 'string') {
         throw new Error('files is not string');
     }
 

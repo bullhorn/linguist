@@ -3,98 +3,98 @@ import chalk from 'chalk';
 
 let renderer = new marked.Renderer();
 marked.setOptions({
-  gfm: true,
-  tables: true,
-  breaks: true,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: true
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: true
 });
 
-renderer.code = function (code) {
-  return chalk.inverse.green(code) + '\n\n';
+renderer.code = (code) => {
+    return chalk.inverse.green(code) + '\n\n'; //eslint-disable-line
 };
 
-renderer.blockquote = function (quote) {
-  return chalk.bgBlack(quote);
+renderer.blockquote = (quote) => {
+    return chalk.bgBlack(quote);
 };
 
-renderer.html = function (html) {
-  return html;
+renderer.html = (html) => {
+    return html;
 };
 
-renderer.heading = function (text, level) {
-  if (level == 1) {
-    return '\n' + chalk.bold.underline(text) + '\n\n';
-  } else {
-    return chalk.underline(text) + '\n\n';
-  }
+renderer.heading = (text, level) => {
+    if (level === 1) {
+        return '\n' + chalk.bold.underline(text) + '\n\n'; //eslint-disable-line
+    }
+
+    return chalk.underline(text) + '\n\n'; //eslint-disable-line
 };
 
-renderer.hr = function () {
-  return chalk.underline(Array(80).join(' ')) + '\n\n\n';
+renderer.hr = () => {
+    return chalk.underline(Array(80).join(' ')) + '\n\n\n'; //eslint-disable-line
 };
 
-renderer.list = function (body) {
-  return body;
+renderer.list = (body) => {
+    return body;
 };
 
-renderer.listitem = function (text) {
-  return text;
+renderer.listitem = (text) => {
+    return text;
 };
 
-renderer.paragraph = function (text) {
-  return text + '\n\n';
+renderer.paragraph = (text) => {
+    return text + '\n\n'; //eslint-disable-line
 };
 
-renderer.table = function () {
-  return '\n';
+renderer.table = () => {
+    return '\n'; //eslint-disable-line
 };
 
-renderer.tablerow = function () {
-  return '';
+renderer.tablerow = () => {
+    return '';
 };
 
-renderer.tablecell = function () {
+renderer.tablecell = () => {
   // flags has the following properties:
   //
   // {
   //   header: true || false,
   //   align: 'center' || 'left' || 'right'
   // }
-  return '';
+    return '';
 };
 
 // Inline Level Methods
-renderer.strong = function (text) {
-  return chalk.bold(text);
+renderer.strong = (text) => {
+    return chalk.bold(text);
 };
 
-renderer.em = function (text) {
-  return chalk.yellow.bold(text);
+renderer.em = (text) => {
+    return chalk.yellow.bold(text);
 };
 
-renderer.codespan = function (code) {
-  return chalk.inverse(code);
+renderer.codespan = (code) => {
+    return chalk.inverse(code);
 };
 
-renderer.br = function () {
-  return '\n';
+renderer.br = () => {
+    return '\n'; //eslint-disable-line
 };
 
-renderer.del = function (text) {
-  return chalk.strikethrough(text);
+renderer.del = (text) => {
+    return chalk.strikethrough(text);
 };
 
-renderer.link = function (text) {
-  return text;
+renderer.link = (text) => {
+    return text;
 };
 
-renderer.image = function () {
-  return '';
+renderer.image = () => {
+    return '';
 };
 
-export default function(text){
-    return marked (text, {renderer: renderer});
-}
+export default (text) => {
+    return marked(text, { renderer: renderer });
+};
