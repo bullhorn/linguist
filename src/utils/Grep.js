@@ -25,18 +25,8 @@ class Searcher {
         });
 
         let result = [];
-
         let resultLength = 0;
 
-        let filter;
-
-        if (typeof options.pattern === 'string') {
-            filter = line => line.indexOf(options.pattern) > -1;
-        } else {
-            filter = line => options.pattern.test(line);
-        }
-
-        // 监听匹配事件
         read.on('match', filepath => {
             let temp = {
                 path: filepath,
@@ -51,9 +41,9 @@ class Searcher {
 
             rl.on('line', (line, index) => {
                 line = line.toString(options.encoding);
-                if (filter(line)) {
+                let test = this.filter(line);
+                if (test) {
                     this._emit('line', filepath, index, line);
-
                     temp.data.push({
                         index,
                         content: line
@@ -63,7 +53,6 @@ class Searcher {
 
             rl.on('end', () => {
                 resultLength -= 1;
-
                 if (temp.data.length) {
                     result.push(temp);
                 }
@@ -79,6 +68,14 @@ class Searcher {
                 this._emit('end', result);
             }
         });
+    }
+
+    filter(line) {
+        if (typeof this.options.pattern === 'string') {
+            return line.indexOf(options.pattern) > -1;
+        } else {
+            return new RegExp(this.options.pattern).test(line);
+        }
     }
 
     on(name, callback) {

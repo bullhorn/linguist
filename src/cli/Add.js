@@ -14,20 +14,24 @@ export class Add {
         //logger.clear();
         logger.spin('loading configuration...');
         let config = rc('linguist', Object.assign({
-            dest: './l10n'
+            dest: './l10n',
+            useFlatKeys: false,
         }, options));
         logger.spin('initializing...');
         let defaults = Utils.readJSON(`${config.dest}/${from}.json`);
         let vals = Object.keys(Utils.flattenObject(defaults));
         logger.info(`found ${vals.length} keys`);
+        let existing = Utils.readJSON(`${config.dest}/${to}.json`);
+        let exists = Object.keys(Utils.flattenObject(existing));
+        let remaining = _.xor(vals, exists);
         let obj = {};
         let promises = [];
-        for (let key of vals) {
+        for (let key of remaining) {
             promises.push(
                 new Lazy((resolve, reject) => {
                     this.translate(_.get(defaults, key, '**NO TRANSLATION**'), from.slice(0, 2), to.slice(0, 2))
                         .then(translation => {
-                            logger.spin(`translating...${vals.indexOf(key)} of ${vals.length}`);
+                            logger.spin(`translating...${remaining.indexOf(key)} of ${remaining.length}`);
                             obj[key] = translation;
                         })
                         .then(resolve)
@@ -38,9 +42,9 @@ export class Add {
         logger.spin('translating...');
         return Utils.series(promises, 1)
         .then(() => {
-            logger.info(`translated ${vals.length} keys`);
+            logger.info(`translated ${remaining.length} keys`);
             let file = `${config.dest}/${to}.json`;
-            let final = Utils.deepen(obj);
+            let final = config.useFlatKeys ? obj : Utils.deepen(obj);
             let current = Utils.readJSON(file);
             _.defaultsDeep(current, final);
             current = Utils.sortByKeys(current);

@@ -18,6 +18,7 @@ export class Update {
         let config = rc('linguist', Object.assign({
             source: './src/**/*',
             dest: './l10n',
+            useFlatKeys: false,
             keys: [
                 "{{[^']*[']([^|]+)['][^']*\s*\|\s*translate.*}}",
                 '<[^>]*translate[^>]*>([^<]*)'
@@ -46,7 +47,7 @@ export class Update {
             })
             .then((missing) => {
                 let file = `${config.dest}/${lang}.json`;
-                let final = Utils.deepen(missing);
+                let final = config.useFlatKeys ? missing : Utils.deepen(missing);
                 let current = Utils.readJSON(file);
                 _.defaultsDeep(current, final);
                 let tmp = TRANSLATION(Utils.sortByKeys(current));
