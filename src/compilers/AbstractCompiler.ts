@@ -6,21 +6,20 @@ import { Translations } from '../utils/Translations';
 import { Logger } from '../utils/LumberJack';
 
 export abstract class AbstractCompiler {
-    constructor (private options: CommandOptions) { }
+    public extension: string = '.lng';
+    constructor (protected options: CommandOptions) { }
 
     public getSourceTranslations (): Translations {
-        const compiler: Compiler = getCompiler(this.options);
+        // const compiler: Compiler = getCompiler(this.options);
         const normalizedOutput: string = path.resolve(this.options.dest);
         let outputDir: string = normalizedOutput;
-        let controlFilename: string = `${this.options.prefix}${this.options.locale}.${compiler.extension}`;
+        let controlFilename: string = `${this.options.prefix}${this.options.locale}.${this.extension}`;
         const controlPath: string = path.join(outputDir, controlFilename);
-
         if (!fs.existsSync(controlPath)) {
             Logger.error(`✗ Source translations not found, will use target translations as source.`);
             return new Translations();
         }
-
-        return compiler.parse(fs.readFileSync(controlPath, 'utf-8'));
+        return this.parse(fs.readFileSync(controlPath, 'utf-8'));
     }
 
     public read (path): Translations {
@@ -34,5 +33,4 @@ export abstract class AbstractCompiler {
     parse (contents: string): Translations {
         return new Translations();
     }
-
 }

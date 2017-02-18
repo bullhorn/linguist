@@ -1,5 +1,5 @@
 import * as chalk from 'chalk';
-import clear from 'clear';
+import * as clear from 'clear';
 import mark from './MarkedRenderer';
 import { Spinner } from './Spinner';
 

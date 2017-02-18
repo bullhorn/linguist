@@ -64,9 +64,9 @@ test('should extract strings with liberal spacing', async t => {
             ) { }
             public test() {
                 this._translateService.translate('Hello');
-                this._translateService.translate ( 'World' );
+                this._translateService.translate ( "World" );
                 this._translateService.translate ( ['How'] );
-                this._translateService.translate([ 'Are' ]);
+                this._translateService.translate([ \`Are\` ]);
                 this._translateService.translate([ 'You' , 'Today' ]);
             }
     `;

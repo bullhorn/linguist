@@ -18,7 +18,7 @@ export class XliffCompiler extends AbstractCompiler implements Compiler {
     public source: Translations;
     public extension: string = 'xlf';
 
-    public compile(target: Translations): string {
+    public compile (target: Translations): string {
         let pkg = Utils.readJSON('./package.json');
         let source: Translations = this.getSourceTranslations();
         if ( source.count() <= 0 ) {
@@ -38,15 +38,15 @@ export class XliffCompiler extends AbstractCompiler implements Compiler {
                 'target-language': target.language,
                 datatype: 'plaintext',
                 original: 'messages',
-                date: Date.now(),
-                'product-name': pkg.name
+                // date: Date.now(),
+                'product-name': (pkg.name || 'app')
             }
         };
         let units: Array<any> = Object.keys(source.values).reduce((translations: Array<any>, key: string) => {
             translations.push({
                 $: { id: key, datatype: 'html' },
-                source: [source.get(key)],
-                target: [target.get(key)]
+                source: source.get(key),
+                target: target.get(key)
             });
             return translations;
         }, []);
@@ -56,7 +56,7 @@ export class XliffCompiler extends AbstractCompiler implements Compiler {
         return builder.buildObject(xmlJs);
     }
 
-    public parse(contents: string): Translations {
+    public parse (contents: string): Translations {
         const result = {
             values: {}
         };

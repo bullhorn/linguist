@@ -7,6 +7,7 @@ import { Extract } from './commands/Extract';
 import { Convert } from './commands/Convert';
 
 // Compilers
+export * from './compilers/AbstractCompiler';
 export * from './compilers/Compiler';
 export * from './compilers/JsonCompiler';
 export * from './compilers/XliffCompiler';

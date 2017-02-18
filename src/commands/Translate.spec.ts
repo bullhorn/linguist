@@ -1,10 +1,6 @@
 import test from 'ava';
 import { Translate } from './Translate';
 
-test('this should pass', (t) => {
-    t.pass();
-});
-
 // test('should check for missing keys', async t => {
 //     const data = new Check().run('en', {
 //         source: './tmp/**/*',
@@ -14,11 +10,13 @@ test('this should pass', (t) => {
 //     t.is(Object.keys(missing).length, 1);
 // });
 
+let translator: Translate;
+
+test.beforeEach(() => {
+     translator = new Translate();
+});
+
 test('should translate locale file to german', async t => {
-    const data = new Translate().run('de', {
-        sources: ['../test/tmp/**/*'],
-        dest: '../test/l10n'
-    });
-    const translations = await data;
-    t.is(translations.greeting, 'Hallo');
+    const translation = await translator.translate('Hello', 'en', 'de');
+    t.is(translation, 'Hallo');
 });

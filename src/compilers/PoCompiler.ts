@@ -11,8 +11,8 @@ export class PoCompiler extends AbstractCompiler implements Compiler {
 	 */
 	public domain = '';
 	public extension: string = 'pot';
-	
-	public compile(collection: Translations): string {
+
+	public compile (collection: Translations): string {
 		const data = {
 			charset: 'utf-8',
 			headers: {
@@ -27,14 +27,14 @@ export class PoCompiler extends AbstractCompiler implements Compiler {
 						msgstr: collection.get(key)
 					};
 					return translations;
-				}, <any> {})
+				}, {} as any)
 			}
 		};
 
 		return gettext.po.compile(data, 'utf-8');
 	}
 
-	public parse(contents: string): Translations {
+	public parse (contents: string): Translations {
 		const collection = new Translations();
 
 		const po = gettext.po.parse(contents, 'utf-8');
@@ -47,7 +47,7 @@ export class PoCompiler extends AbstractCompiler implements Compiler {
 			.reduce((values, key) => {
 				values[key] = po.translations[this.domain][key].msgstr.pop();
 				return values;
-			}, <TranslationType> {});
+			}, {} as TranslationType);
 
 		return new Translations(values);
 	}
