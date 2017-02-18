@@ -1,5 +1,5 @@
-import marked from 'marked';
-import chalk from 'chalk';
+import * as marked from 'marked';
+import * as chalk from 'chalk';
 
 let renderer = new marked.Renderer();
 marked.setOptions({
@@ -13,7 +13,7 @@ marked.setOptions({
 });
 
 renderer.code = (code) => {
-    return chalk.inverse.green(code) + '\n\n'; //eslint-disable-line
+    return chalk.inverse.green(code) + '\n\n';
 };
 
 renderer.blockquote = (quote) => {
@@ -26,14 +26,14 @@ renderer.html = (html) => {
 
 renderer.heading = (text, level) => {
     if (level === 1) {
-        return '\n' + chalk.bold.underline(text) + '\n\n'; //eslint-disable-line
+        return '\n' + chalk.bold.underline(text) + '\n\n';
     }
 
-    return chalk.underline(text) + '\n\n'; //eslint-disable-line
+    return chalk.underline(text) + '\n\n';
 };
 
 renderer.hr = () => {
-    return chalk.underline(Array(80).join(' ')) + '\n\n\n'; //eslint-disable-line
+    return chalk.underline(Array(80).join(' ')) + '\n\n\n';
 };
 
 renderer.list = (body) => {
@@ -45,11 +45,11 @@ renderer.listitem = (text) => {
 };
 
 renderer.paragraph = (text) => {
-    return text + '\n\n'; //eslint-disable-line
+    return text + '\n\n';
 };
 
 renderer.table = () => {
-    return '\n'; //eslint-disable-line
+    return '\n';
 };
 
 renderer.tablerow = () => {
@@ -57,12 +57,12 @@ renderer.tablerow = () => {
 };
 
 renderer.tablecell = () => {
-  // flags has the following properties:
-  //
-  // {
-  //   header: true || false,
-  //   align: 'center' || 'left' || 'right'
-  // }
+    // flags has the following properties:
+    //
+    // {
+    //   header: true || false,
+    //   align: 'center' || 'left' || 'right'
+    // }
     return '';
 };
 
@@ -80,7 +80,7 @@ renderer.codespan = (code) => {
 };
 
 renderer.br = () => {
-    return '\n'; //eslint-disable-line
+    return '\n';
 };
 
 renderer.del = (text) => {

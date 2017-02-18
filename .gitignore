@@ -1,11 +1,12 @@
 # Package/Dependencies
-lib/
 bower_components/
 jspm_packages/
 node_modules/
 
 # Build results
 .[Bb]in/
+lib/
+build/
 
 # Generated Documentation
 .[Dd]oc/
@@ -13,3 +14,7 @@ node_modules/
 # Others
 .DS_Store
 .idea/
+src/**.js
+coverage
+.nyc_output
+*.log

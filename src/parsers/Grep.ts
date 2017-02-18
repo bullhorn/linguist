@@ -1,34 +1,40 @@
-import readLine from 'fs-readline';
-import glob from 'glob';
-import Event from 'events';
+import * as readLine from 'fs-readline';
+import * as glob from 'glob';
+import * as Event from 'events';
 
-class Searcher {
+export interface GrepOptions {
+    pattern: RegExp | string;
+    files?: string;
+    encoding?: string;
+    maxResultLength?: number | null;
+}
 
-    static get options() {
-        return {
-            encoding: 'utf8',
-            maxResultLength: null
-        };
-    }
+export class Searcher {
+    static options: GrepOptions = {
+        pattern: 'test',
+        encoding: 'utf8',
+        maxResultLength: null
+    };
 
-    constructor(options) {
-        this.options = Object.assign(Searcher.options, options);
-        this._event = new Event();
+    private options: GrepOptions;
+    private _event = new Event();
 
+    constructor (options: GrepOptions) {
+        this.options = Object.assign({}, Searcher.options, options);
         this._init();
     }
 
-    _init() {
-        let options = this.options;
+    _init () {
+        let options: any = this.options;
         let read = glob(options.files, {
             nodir: true
         });
 
-        let result = [];
-        let resultLength = 0;
+        let result: Array<any> = [];
+        let resultLength: number = 0;
 
         read.on('match', filepath => {
-            let temp = {
+            let temp: any = {
                 path: filepath,
                 data: []
             };
@@ -39,15 +45,12 @@ class Searcher {
 
             resultLength += 1;
 
-            rl.on('line', (line, index) => {
+            rl.on('line', (line: any, index: number) => {
                 line = line.toString(options.encoding);
                 let test = this.filter(line);
                 if (test) {
                     this._emit('line', filepath, index, line);
-                    temp.data.push({
-                        index,
-                        content: line
-                    });
+                    temp.data.push({ index: index, content: line });
                 }
             });
 
@@ -70,20 +73,20 @@ class Searcher {
         });
     }
 
-    filter(line) {
+    filter (line) {
         if (typeof this.options.pattern === 'string') {
-            return line.indexOf(options.pattern) > -1;
+            return line.indexOf(this.options.pattern) > -1;
         } else {
             return new RegExp(this.options.pattern).test(line);
         }
     }
 
-    on(name, callback) {
+    on (name, callback) {
         this._event.on(name, callback);
         return this;
     }
 
-    _emit(name, ...args) {
+    _emit (name, ...args) {
         this._event.emit(name, ...args);
     }
 }
@@ -91,21 +94,15 @@ class Searcher {
 /**
  * name Grep
  */
-export function Grep(pattern, files) {
+export function Grep (pattern: string | RegExp, files: string) {
     if (pattern === '') {
         throw new Error('pattern is empty');
     }
-
     if (typeof pattern !== 'string' && !(pattern instanceof RegExp)) {
         throw new Error('pattern is not string and RegExp');
     }
-
     if (typeof files !== 'string') {
         throw new Error('files is not string');
     }
-
-    return new Searcher({
-        pattern,
-        files
-    });
+    return new Searcher({ pattern, files });
 }

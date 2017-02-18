@@ -1,27 +1,88 @@
-import fs from 'fs';
-import { TRANSLATION } from './Templates';
+import * as fs from 'fs';
+import * as ts from 'typescript';
+import { CommandOptions } from './CommandOptions';
+import { TRANSLATION, XLIFF } from './Templates';
+
+export const DEFAULT_OPTIONS: CommandOptions = {
+    prefix: 'messages.',
+    locale: 'en-US',
+    sources: ['./src'],
+    dest: './l10n',
+    patterns: [
+        '/**/*.html',
+        '/**/*.ts'
+    ],
+    useFlatKeys: false,
+    format: 'json',
+    verbose: false,
+    replace: false,
+    clean: false,
+    keys: []
+};
+
+// keys: [
+//     "{{[^']*[']([^|]+)['][^']*\s*\|\s*translate.*}}",
+//     '<[^>]*translate[^>]*>([^<]*)'
+// ]
 
 export class Utils {
 
-    static readJSON(file) {
-        let data = {};
+    static readConfig (options) {
+        let rc = Utils.readJSON(`.linguistrc`);
+        return Object.assign({}, DEFAULT_OPTIONS, rc, options);
+    }
+
+    static readJSON (file: string): any {
+        let data: any = {};
         try {
             data = JSON.parse(fs.readFileSync(file, 'utf8'));
         } catch (err) {
-            //Do Nothing
+            // Do Nothing
         }
         return data;
     }
 
-    static writeJSON(file, data) {
+    static writeJSON (file, data): Promise<any> {
+        try {
+            let tmp = TRANSLATION(data);
+            fs.writeFile(file, tmp, (err) => {
+                if (err) {
+                    return Promise.reject(err);
+                }
+                return Promise.resolve(file);
+            });
+        } catch (err) {
+            return Promise.reject(err);
+        } finally {
+            return Promise.reject('Unknown Error');
+        }
+    }
+
+    static writeXLIFF (file, source, translated, config): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
-                let tmp = TRANSLATION(data);
+                let src = Utils.flattenObject(source);
+                let tgt = Utils.flattenObject(translated);
+                let pkg = Utils.readJSON('./package.json');
+                let packet = {
+                    from: config.from,
+                    to: config.to,
+                    name: pkg.name || 'app',
+                    timestamp: Date.now(),
+                    translations: Object.keys(src).map((key) => {
+                        return {
+                            key: key,
+                            source: src[key],
+                            target: tgt[key]
+                        };
+                    })
+                };
+                let tmp = XLIFF(packet);
                 fs.writeFile(file, tmp, (err) => {
                     if (err) {
                         reject(err);
                     }
-                    resolve(data);
+                    resolve(translated);
                 });
             } catch (err) {
                 reject(err);
@@ -29,16 +90,16 @@ export class Utils {
         });
     }
 
-    static series(promises, threads = 1) {
-        let results = null;
-        promises = promises.slice(); //eslint-disable-line
+    static series (promises: Array<Promise<any>>, threads: number = 1): Promise<any> {
+        let results: Array<any>;
+        promises = promises.slice();
         return new Promise((resolve, reject) => {
             /**
              * [next description]
              * @param  {[type]}   result [description]
              * @return {Function}        [description]
              */
-            function next(result) {
+            function next (result?: any) {
                 if (!results) {
                     results = [];
                 } else {
@@ -60,8 +121,8 @@ export class Utils {
         });
     }
 
-    static sortByKeys(unordered) {
-        const ordered = {};
+    static sortByKeys (unordered: Array<any>) {
+        const ordered: any = {};
         Object.keys(unordered).sort().forEach((key) => {
             let value = unordered[key];
             if (value instanceof Object) {
@@ -72,9 +133,9 @@ export class Utils {
         return ordered;
     }
 
-    static flattenObject(ob) {
-        let toReturn = {};
-        let flatObject;
+    static flattenObject (ob: any): any {
+        let toReturn: any = {};
+        let flatObject: any;
         for (let i in ob) {
             if (!ob.hasOwnProperty(i)) {
                 continue;
@@ -94,9 +155,9 @@ export class Utils {
         return toReturn;
     }
 
-    static deepen(o) {
+    static deepen (o) {
         let oo = {}, t, parts, part;
-        for (let k in o) { //eslint-disable-line
+        for (let k in o) { // eslint-disable-line
             t = oo;
             parts = k.split('.');
             let key = parts.pop();
@@ -110,18 +171,24 @@ export class Utils {
     }
 }
 
+export interface LazyPromise<T> extends Promise<T> {
+    __then (onfulfilled?: ((value: T) => T | PromiseLike<T>) | undefined | null, onrejected?: ((reason: any) => T | PromiseLike<T>) | undefined | null): Promise<T>;
+    __then<TResult> (onfulfilled: ((value: T) => T | PromiseLike<T>) | undefined | null, onrejected: (reason: any) => TResult | PromiseLike<TResult>): Promise<T | TResult>;
+    __then<TResult> (onfulfilled: (value: T) => TResult | PromiseLike<TResult>, onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<TResult>;
+    __then<TResult1, TResult2> (onfulfilled: (value: T) => TResult1 | PromiseLike<TResult1>, onrejected: (reason: any) => TResult2 | PromiseLike<TResult2>): Promise<TResult1 | TResult2>;
+}
 /**
  * [Lazy description]
  * @param {Function} fn [description]
  */
-export function Lazy(fn) {
+export function Lazy (fn): LazyPromise<any> {
     let resolver, rejecter;
-    const promise = new Promise((resolve, reject) => {
+    const promise: any = new Promise((resolve, reject) => {
         resolver = resolve;
         rejecter = reject;
     });
     promise.__then = promise.then;
-    promise.then = function factory(success, failure) {
+    promise.then = function factory (success: Function, failure: Function) {
         setImmediate(() => {
             fn(resolver, rejecter);
         });
@@ -136,8 +203,8 @@ export function Lazy(fn) {
  * @param  {[type]} field [description]
  * @return {[type]}       [description]
  */
-export function sortByField(field) {
-    return function compare(a, b) {
+export function sortByField (field: string): Function {
+    return function compare (a: any, b: any) {
         return (a[field] < b[field]) ? 1 : (a[field] > b[field]) ? -1 : 0; // eslint-disable-line
     };
 }
@@ -147,8 +214,8 @@ export function sortByField(field) {
  * @param  {string} data - string to be pluralized
  * @return {string} Pluralized string using defined rules
  */
-export function Plural(data) {
-    let rules = [
+export function Plural (data: string): string {
+    let rules: Array<any> = [
         [/s?$/i, 's'],
         [/([^aeiou]ese)$/i, '$1'],
         [/(ax|test)is$/i, '$1es'],
@@ -177,11 +244,29 @@ export function Plural(data) {
 
     let len = rules.length;
     while (len--) {
-        let rule = rules[len],
-            exp = new RegExp(rule[0]);
+        let rule: Array<any> = rules[len];
+        let exp = new RegExp(rule[0]);
         if (exp.test(this)) {
             return data.replace(exp, rule[1]);
         }
     }
     return data;
+}
+
+export function printAllChildren (sourceFile: ts.SourceFile, node: ts.Node, depth = 0) {
+    console.log(
+        new Array(depth + 1).join('----'),
+        `[${node.kind}]`,
+        syntaxKindToName(node.kind),
+        `[pos: ${node.pos}-${node.end}]`,
+        ':\t\t\t',
+        node.getFullText(sourceFile).trim()
+    );
+
+    depth++;
+    node.getChildren(sourceFile).forEach(childNode => printAllChildren(sourceFile, childNode, depth));
+}
+
+export function syntaxKindToName (kind: ts.SyntaxKind) {
+    return ts.SyntaxKind[kind];
 }

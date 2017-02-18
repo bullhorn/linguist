@@ -1,5 +1,5 @@
-import log from 'log-update';
-import chalk from 'chalk';
+import * as log from 'log-update';
+import * as chalk from 'chalk';
 
 const PATTERNS = [
     '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏',
@@ -39,27 +39,25 @@ const PATTERNS = [
 
 // let frames = process.platform === 'win32' ?
 //    ['-', '\\', '|', '/'] :
-//	['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+// 	['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 
-//frames = '▁▂▃▄▅▆▇█▇▆▄▂▁'.split('');
+// frames = '▁▂▃▄▅▆▇█▇▆▄▂▁'.split('');
 
 
 /**
  * name elegantSpinner
  */
-function elegantSpinner(pattern = 0) {
-    let frames = PATTERNS[pattern], i = 0;
+function elegantSpinner (pattern: number = 0) {
+    let frames: string = PATTERNS[pattern], i = 0;
     return () => {
         return frames[i = ++i % frames.length];
     };
 }
 
 export class Spinner {
-    constructor() {
-        this.interval = null;
-    }
+    private interval: NodeJS.Timer;
 
-    start(message, pattern, clear) {
+    start (message: string, pattern: number = 0, clear: boolean = false) {
         let frame = elegantSpinner(pattern);
         this.stop(clear);
         this.interval = setInterval(() => {
@@ -67,10 +65,9 @@ export class Spinner {
         }, 50);
     }
 
-    stop(clear) {
+    stop (clear: boolean = false) {
         if (this.interval) {
             clearInterval(this.interval);
-            this.interval = null;
             if (clear) {
                 log.clear();
             }
