@@ -7,7 +7,7 @@ export class NamespacedJsonCompiler extends AbstractCompiler implements Compiler
 	public extension: string = 'json';
 
 	public compile (collection: Translations): string {
-		const values = flat.unflatten(collection.values);
+		const values = flat.unflatten(collection.values, { object: true });
 		return JSON.stringify(values, null, '\t');
 	}
 

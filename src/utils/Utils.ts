@@ -11,7 +11,6 @@ export const DEFAULT_OPTIONS: CommandOptions = {
         '/**/*.html',
         '/**/*.ts'
     ],
-    useFlatKeys: false,
     format: 'json',
     verbose: false,
     replace: false,

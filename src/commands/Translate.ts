@@ -26,7 +26,7 @@ export class Translate {
 		});
 		try {
 			const collection: Translations = compiler.getSourceTranslations();
-            const existing: Translations = compiler.read(outputPath);
+            let existing: Translations = compiler.read(outputPath);
             Logger.info(`* Loaded Control file`);
             if (collection.count() > 0) {
                 let missing = collection.minus(existing);
@@ -34,14 +34,14 @@ export class Translate {
                 if (missing.count() > 0) {
                     Logger.error(`✗ Missing ${missing.count()} translations`);
                     let promises: Array<LazyPromise<any>> = [];
-                    let translations: Translations = new Translations();
+                    // let translations: Translations = new Translations();
                     missing.forEach((key, value) => {
                         promises.push(
                             Lazy((resolve, reject) => {
                                 this.translate(collection.get(key), options.locale.slice(0, 2), lang.slice(0, 2))
                                     .then(translated => {
                                         Logger.spin(`translating...${missing.keys().indexOf(key)} of ${missing.count()}`);
-                                        translations = translations.add(key, translated);
+                                        existing = existing.add(key, translated);
                                     })
                                     .then(resolve)
                                     .catch(reject);
@@ -51,9 +51,10 @@ export class Translate {
                     Logger.spin('translating...');
                     return Utils.series(promises, 1)
                         .then(() => {
-                            fs.writeFileSync(outputPath, compiler.compile(translations));
+                            existing = existing.sort();
+                            fs.writeFileSync(outputPath, compiler.compile(existing));
 			                Logger.success(`✔︎ Saved to '${outputPath}'`);
-                            return translations;
+                            return existing;
                         })
                         .catch((err) => {
                             Logger.error('✗ An error occurred', err);
