@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bvkimball/linguist"
+    "url": "https://github.com/bullhorn/linguist"
   },
   "keywords": [
     "i18n",
@@ -17,9 +17,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bvkimball/linguist/issues"
+    "url": "https://github.com/bullhorn/linguist/issues"
   },
-  "homepage": "https://github.com/bvkimball/linguist#readme",
+  "homepage": "https://github.com/bullhorn/linguist#readme",
   "bin": {
     "linguist": "build/main/cli.js"
   },
