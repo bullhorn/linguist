@@ -1,5 +1,5 @@
 <img src="bully.png" align="right" width="100" />
-# linguist
+# linguist  [![Build Status](https://travis-ci.org/bullhorn/linguist.svg?branch=master)](https://travis-ci.org/bullhorn/linguist) [![Coverage Status](https://coveralls.io/repos/bullhorn/linguist/badge.svg?branch=master)](https://coveralls.io/r/bullhorn/linguist?branch=master)
 
 > A CLI to help manage localization files
 
@@ -46,8 +46,6 @@ Options:
     -d, --dest <dest>        specify output directory.
     -v, --verbose            list all keys found.
 ```
-
-Sample output:
 
 ```
 $ linguist check en-US
