@@ -27,7 +27,7 @@ export * from './parsers/Grep';
 export * from './utils/LumberJack';
 export * from './utils/MarkedRenderer';
 export * from './utils/Spinner';
-export * from './utils/extractor';
+export * from './utils/Extractor';
 export * from './utils/Translations';
 export * from './utils/LumberJack';
 export * from './utils/Utils';

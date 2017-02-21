@@ -6,7 +6,7 @@ import { Translations } from '../utils/Translations';
 import fetch from 'node-fetch';
 import { Lazy, LazyPromise, Utils } from '../utils/Utils';
 import { Logger } from '../utils/LumberJack';
-import { CommandOptions } from '../Utils/CommandOptions';
+import { CommandOptions } from '../utils/CommandOptions';
 
 export class Translate {
     run (...args): Promise<any>;

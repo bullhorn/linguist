@@ -4,10 +4,9 @@ import * as _ from 'lodash';
 import { Compiler, getCompiler } from '../compilers/Compiler';
 import { Parser, getParsers } from '../parsers/Parser';
 import { Utils } from '../utils/Utils';
-import { Extractor } from '../utils/extractor';
 import { Translations } from '../utils/Translations';
 import { Logger } from '../utils/LumberJack';
-import { CommandOptions } from '../Utils/CommandOptions';
+import { CommandOptions } from '../utils/CommandOptions';
 
 export class Convert {
     run (...args): Promise<any>;

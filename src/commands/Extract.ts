@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Extractor } from '../utils/extractor';
+import { Extractor } from '../utils/Extractor';
 import { Translations } from '../utils/Translations';
 import { Compiler, getCompiler } from '../compilers/Compiler';
 import { Parser, getParsers } from '../parsers/Parser';
