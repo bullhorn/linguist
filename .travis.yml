@@ -3,5 +3,7 @@ language: node_js
 node_js:
   - 6
   - 4
+before_install:
+  - npm install -g yarn
 after_success:
   - yarn send-coverage
