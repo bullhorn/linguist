@@ -1,7 +1,7 @@
-<img src="bully.png" align="right" width="100" />
+<img src="bully.png" align="left" width="100" />
 # linguist  [![Build Status](https://travis-ci.org/bullhorn/linguist.svg?branch=master)](https://travis-ci.org/bullhorn/linguist) [![Coverage Status](https://coveralls.io/repos/bullhorn/linguist/badge.svg?branch=master)](https://coveralls.io/r/bullhorn/linguist?branch=master)
 
-> A CLI to help manage localization files
+A CLI to help manage localization files
 
 ## Installation
 
