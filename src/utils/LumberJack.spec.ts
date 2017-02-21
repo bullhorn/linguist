@@ -27,7 +27,6 @@ test('should display log error messages', async t => {
     t.pass();
 });
 
-
 test('should display spinner', async t => {
     Logger.spin('processing...');
     t.pass();

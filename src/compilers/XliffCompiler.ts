@@ -60,13 +60,20 @@ export class XliffCompiler extends AbstractCompiler implements Compiler {
         const result = {
             values: {}
         };
-        parser.parseString(contents, (err, data) => {
-            result.values = data.xliff.file.body['trans-unit']
-                .reduce((values, unit) => {
-                    values[unit.$.id] = unit.target[0];
-                    return values;
-                }, {});
-        });
+        try {
+            parser.parseString(contents, (err, data) => {
+                if (err) {
+                    throw err;
+                }
+                result.values = data.xliff.file.body['trans-unit']
+                    .reduce((values, unit) => {
+                        values[unit.$.id] = unit.target[0];
+                        return values;
+                    }, {});
+            });
+        } catch (err) {
+            // do nothing
+        }
 
         return new Translations(result.values);
     }

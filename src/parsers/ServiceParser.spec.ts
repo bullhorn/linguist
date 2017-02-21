@@ -87,7 +87,6 @@ test.skip('should not extract string when not accessing property', async t => {
     const keys = parser.extract(contents, componentFilename).keys();
     t.deepEqual(keys, []);
 });
-
 // FAILS (Use AstServiceParser)
 /*test('should extract string with params on same line', async t => {
     const contents = `
@@ -102,4 +101,3 @@ test.skip('should not extract string when not accessing property', async t => {
     const keys = parser.extract(contents, componentFilename).keys();
     t.deepEqual(keys, ['You are expected at {{time}}']);
 });*/
-

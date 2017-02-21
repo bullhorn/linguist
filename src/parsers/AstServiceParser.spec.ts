@@ -14,7 +14,6 @@ test.beforeEach(() => {
     parser = new TestAstServiceParser();
 });
 
-
 test('should extract strings in TranslateService\'s get() method', async t => {
     const contents = `
         @Component({ })

@@ -10,7 +10,6 @@ class TestTemplateParser extends AbstractTemplateParser {
 	}
 }
 
-
 let parser: TestTemplateParser = new TestTemplateParser();
 
 test('should recognize js extension as angular component', async t => {

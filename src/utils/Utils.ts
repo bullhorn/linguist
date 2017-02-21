@@ -83,7 +83,8 @@ export interface LazyPromise<T> extends Promise<T> {
  * @param {Function} fn [description]
  */
 export function Lazy (fn): LazyPromise<any> {
-    let resolver, rejecter;
+    let resolver;
+    let rejecter;
     const promise: any = new Promise((resolve, reject) => {
         resolver = resolve;
         rejecter = reject;

@@ -43,12 +43,12 @@ const PATTERNS = [
 
 // frames = '▁▂▃▄▅▆▇█▇▆▄▂▁'.split('');
 
-
 /**
  * name elegantSpinner
  */
 function elegantSpinner (pattern: number = 0) {
-    let frames: string = PATTERNS[pattern], i = 0;
+    let frames: string = PATTERNS[pattern];
+    let i = 0;
     return () => {
         return frames[i = ++i % frames.length];
     };

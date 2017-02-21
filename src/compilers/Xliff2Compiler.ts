@@ -17,10 +17,10 @@ const builder = new xml2js.Builder({
 export class Xliff2Compiler extends AbstractCompiler implements Compiler {
     public extension: string = 'xliff';
 
-    public compile(target: Translations): string {
+    public compile (target: Translations): string {
         let pkg = Utils.readJSON('./package.json');
         let source: Translations = this.getSourceTranslations();
-        if ( source.count() <= 0 ) {
+        if (source.count() <= 0) {
             source = target;
             target = new Translations();
         }
@@ -51,25 +51,31 @@ export class Xliff2Compiler extends AbstractCompiler implements Compiler {
         file['unit'] = units;
         xmlJs['file'] = [file];
         return builder.buildObject(xmlJs);
-	}
+    }
 
-	public parse(contents: string): Translations {
+    public parse (contents: string): Translations {
         const result: Translations = new Translations();
-
-        parser.parseString(contents, (err, data) => {
-            const srcLang = data.xliff.$.srcLang;
-            const trgLang = data.xliff.$.trgLang;
-            result.language = trgLang;
-            data.xliff.file.forEach((file) => {
-                file.unit.forEach((unit) => {
-                    unit.segement.forEach((segment) => {
-                        result.add(unit.$.id, segment.target);
+        try {
+            parser.parseString(contents, (err, data) => {
+                if (err) {
+                    throw err;
+                }
+                const srcLang = data.xliff.$.srcLang;
+                const trgLang = data.xliff.$.trgLang;
+                result.language = trgLang;
+                data.xliff.file.forEach((file) => {
+                    file.unit.forEach((unit) => {
+                        unit.segement.forEach((segment) => {
+                            result.add(unit.$.id, segment.target);
+                        });
                     });
                 });
             });
-        });
+        }catch (err) {
+            // do nothing
+        }
 
-		return result;
-	}
+        return result;
+    }
 
 }

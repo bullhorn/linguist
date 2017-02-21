@@ -27,11 +27,12 @@
     babel-plugin-espower "^2.3.2"
     package-hash "^1.2.0"
 
-"@ava/pretty-format@^1.0.0":
-  version "1.0.2"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/@ava/pretty-format/-/pretty-format-1.0.2.tgz#e3a90465cc014bf542036555e5ec9796031db858"
+"@ava/pretty-format@^1.1.0":
+  version "1.1.0"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/@ava/pretty-format/-/pretty-format-1.1.0.tgz#d0a57d25eb9aeab9643bdd1a030642b91c123e28"
   dependencies:
     ansi-styles "^2.2.1"
+    esutils "^2.0.2"
 
 "@sindresorhus/df@^1.0.1":
   version "1.0.1"
@@ -99,8 +100,8 @@ JSONStream@^1.0.4:
     through ">=2.2.7 <3"
 
 abbrev@1:
-  version "1.0.9"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
+  version "1.1.0"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
 
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
@@ -267,12 +268,12 @@ ava-init@^0.2.0:
     write-pkg "^2.0.0"
 
 ava@^0.18.1:
-  version "0.18.1"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/ava/-/ava-0.18.1.tgz#5f47e09642b397aba471e09ffc1e5a59c670a52d"
+  version "0.18.2"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/ava/-/ava-0.18.2.tgz#79253d1636077034a2780bb55b5c3e6c3d7f312f"
   dependencies:
     "@ava/babel-preset-stage-4" "^1.0.0"
     "@ava/babel-preset-transform-test-files" "^2.0.0"
-    "@ava/pretty-format" "^1.0.0"
+    "@ava/pretty-format" "^1.1.0"
     arr-flatten "^1.0.1"
     array-union "^1.0.1"
     array-uniq "^1.0.2"
@@ -337,7 +338,7 @@ ava@^0.18.1:
     resolve-cwd "^1.0.0"
     slash "^1.0.0"
     source-map-support "^0.4.0"
-    stack-utils "^0.4.0"
+    stack-utils "^1.0.0"
     strip-ansi "^3.0.1"
     strip-bom-buf "^1.0.0"
     time-require "^0.1.2"
@@ -933,12 +934,13 @@ codecov@^1.0.1:
     urlgrey ">=0.4.0"
 
 codelyzer@^2.0.0-beta.4:
-  version "2.0.0"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/codelyzer/-/codelyzer-2.0.0.tgz#212b9182ba9fe0fee325f08781b0d49521a1c987"
+  version "2.0.1"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/codelyzer/-/codelyzer-2.0.1.tgz#d0f7121f67a8424c92d21d3b31f3640b83def9ed"
   dependencies:
     app-root-path "^2.0.1"
     css-selector-tokenizer "^0.7.0"
     cssauron "^1.4.0"
+    semver-dsl "^1.0.1"
     source-map "^0.5.6"
     sprintf-js "^1.0.3"
 
@@ -1365,8 +1367,8 @@ dot-prop@^3.0.0:
     is-obj "^1.0.0"
 
 dot-prop@^4.1.0:
-  version "4.1.0"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/dot-prop/-/dot-prop-4.1.0.tgz#eb29eac57dfa31fda1edef50ea462ee3d38ff3ab"
+  version "4.1.1"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/dot-prop/-/dot-prop-4.1.1.tgz#a8493f0b7b5eeec82525b5c7587fa7de7ca859c1"
   dependencies:
     is-obj "^1.0.0"
 
@@ -1650,8 +1652,8 @@ fs.realpath@^1.0.0:
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
 fsevents@^1.0.0:
-  version "1.0.17"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/fsevents/-/fsevents-1.0.17.tgz#8537f3f12272678765b4fd6528c0f1f66f8f4558"
+  version "1.1.1"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/fsevents/-/fsevents-1.1.1.tgz#f19fd28f43eeaf761680e519a203c4d0b3d31aff"
   dependencies:
     nan "^2.3.0"
     node-pre-gyp "^0.6.29"
@@ -1819,8 +1821,8 @@ glob@~5.0.0:
     path-is-absolute "^1.0.0"
 
 globals@^9.0.0:
-  version "9.15.0"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/globals/-/globals-9.15.0.tgz#7a5d8fd865e69de910b090b15a87772f9423c5de"
+  version "9.16.0"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/globals/-/globals-9.16.0.tgz#63e903658171ec2d9f51b1d31de5e2b8dc01fb80"
 
 globby@^6.0.0:
   version "6.1.0"
@@ -3144,8 +3146,8 @@ q@^1.4.1:
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
 
 qs@~6.3.0:
-  version "6.3.0"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/qs/-/qs-6.3.0.tgz#f403b264f23bc01228c74131b407f18d5ea5d442"
+  version "6.3.1"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/qs/-/qs-6.3.1.tgz#918c0b3bcd36679772baf135b1acb4c1651ed79d"
 
 randomatic@^1.1.3:
   version "1.1.6"
@@ -3155,13 +3157,13 @@ randomatic@^1.1.3:
     kind-of "^3.0.2"
 
 rc@^1.0.1, rc@^1.1.6, rc@~1.1.6:
-  version "1.1.6"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/rc/-/rc-1.1.6.tgz#43651b76b6ae53b5c802f1151fa3fc3b059969c9"
+  version "1.1.7"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/rc/-/rc-1.1.7.tgz#c5ea564bb07aff9fd3a5b32e906c1d3a65940fea"
   dependencies:
     deep-extend "~0.4.0"
     ini "~1.3.0"
     minimist "^1.2.0"
-    strip-json-comments "~1.0.4"
+    strip-json-comments "~2.0.1"
 
 read-all-stream@^3.0.0:
   version "3.1.0"
@@ -3251,8 +3253,8 @@ regenerate@^1.2.1:
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/regenerate/-/regenerate-1.3.2.tgz#d1941c67bad437e1be76433add5b385f95b19260"
 
 regenerator-runtime@^0.10.0:
-  version "0.10.1"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/regenerator-runtime/-/regenerator-runtime-0.10.1.tgz#257f41961ce44558b18f7814af48c17559f9faeb"
+  version "0.10.3"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/regenerator-runtime/-/regenerator-runtime-0.10.3.tgz#8c4367a904b51ea62a908ac310bf99ff90a82a3e"
 
 regex-cache@^0.4.2:
   version "0.4.3"
@@ -3384,9 +3386,9 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.3.3, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.4, rimraf@~2.5.1, rimraf@~2.5.4:
-  version "2.5.4"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/rimraf/-/rimraf-2.5.4.tgz#96800093cbf1a0c86bd95b4625467535c29dfa04"
+rimraf@2, rimraf@^2.2.8, rimraf@^2.3.3, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.4:
+  version "2.6.0"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/rimraf/-/rimraf-2.6.0.tgz#89b8a0fe432b9ff9ec9a925a00b6cdb3a91bbada"
   dependencies:
     glob "^7.0.5"
 
@@ -3395,6 +3397,12 @@ rimraf@~2.1.4:
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/rimraf/-/rimraf-2.1.4.tgz#5a6eb62eeda068f51ede50f29b3e5cd22f3d9bb2"
   optionalDependencies:
     graceful-fs "~1"
+
+rimraf@~2.5.1, rimraf@~2.5.4:
+  version "2.5.4"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/rimraf/-/rimraf-2.5.4.tgz#96800093cbf1a0c86bd95b4625467535c29dfa04"
+  dependencies:
+    glob "^7.0.5"
 
 run-applescript@^3.0.0:
   version "3.0.0"
@@ -3415,6 +3423,12 @@ semver-diff@^2.0.0:
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/semver-diff/-/semver-diff-2.1.0.tgz#4bbb8437c8d37e4b0cf1a68fd726ec6d645d6d36"
   dependencies:
     semver "^5.0.3"
+
+semver-dsl@^1.0.1:
+  version "1.0.1"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/semver-dsl/-/semver-dsl-1.0.1.tgz#d3678de5555e8a61f629eed025366ae5f27340a0"
+  dependencies:
+    semver "^5.3.0"
 
 "semver@2 || 3 || 4 || 5", semver@^5.0.1, semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@~5.3.0:
   version "5.3.0"
@@ -3559,9 +3573,9 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-stack-utils@^0.4.0:
-  version "0.4.0"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/stack-utils/-/stack-utils-0.4.0.tgz#940cb82fccfa84e8ff2f3fdf293fe78016beccd1"
+stack-utils@^1.0.0:
+  version "1.0.0"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/stack-utils/-/stack-utils-1.0.0.tgz#2392cd8ddbd222492ed6c047960f7414b46c0f83"
 
 standard-version@^4.0.0:
   version "4.0.0"
@@ -3647,9 +3661,9 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments@~1.0.4:
-  version "1.0.4"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/strip-json-comments/-/strip-json-comments-1.0.4.tgz#1e15fbcac97d3ee99bf2d73b4c656b082bbafb91"
+strip-json-comments@~2.0.1:
+  version "2.0.1"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
 subarg@~1.0.0:
   version "1.0.0"
@@ -3805,13 +3819,12 @@ tslint-config-standard@^4.0.0:
     tslint-eslint-rules "^3.2.3"
 
 tslint-eslint-rules@^3.2.3:
-  version "3.3.0"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/tslint-eslint-rules/-/tslint-eslint-rules-3.3.0.tgz#1dec066b52f49200ca5eed5013a09a76065334c3"
+  version "3.4.0"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/tslint-eslint-rules/-/tslint-eslint-rules-3.4.0.tgz#694e988121e48168bdb7879a3cc3c9f90b90a1f2"
   dependencies:
     doctrine "^0.7.2"
-    tslint "^4.0.0"
 
-tslint@^4.0.0, tslint@^4.0.2:
+tslint@^4.0.2:
   version "4.4.2"
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/tslint/-/tslint-4.4.2.tgz#b14cb79ae039c72471ab4c2627226b940dda19c6"
   dependencies:
@@ -3841,8 +3854,8 @@ typedoc-default-themes@^0.4.2:
   resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/typedoc-default-themes/-/typedoc-default-themes-0.4.2.tgz#640b854fd7ef19e6774496ea7741ec31a0dcaddc"
 
 typedoc@^0.5.5:
-  version "0.5.6"
-  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/typedoc/-/typedoc-0.5.6.tgz#9e4ec239a6a371ead17843092514d0c68c9271bc"
+  version "0.5.7"
+  resolved "http://hydrogen.bh-bos2.bullhorn.com/artifactory/api/npm/bullhorn-registry/typedoc/-/typedoc-0.5.7.tgz#f2998dbb5909cb3f02db5fecb85e2a4377189e2a"
   dependencies:
     "@types/fs-extra" "0.0.33"
     "@types/handlebars" "^4.0.31"

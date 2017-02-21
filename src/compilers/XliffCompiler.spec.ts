@@ -15,7 +15,7 @@ test.beforeEach( t => {
 });
 
 let XML: string = `<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
- <file source-language="en-US" target-language="en-US" datatype="plaintext" original="messages" product-name="linguist">
+ <file source-language="en-US" target-language="en-US" datatype="plaintext" original="messages" product-name="@bullhorn/linguist">
   <body>
    <trans-unit id="FIRST_KEY" datatype="html">
     <source>One</source>

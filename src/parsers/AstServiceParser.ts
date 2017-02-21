@@ -8,21 +8,17 @@ import * as ts from 'typescript';
 export class AstServiceParser extends AbstractTemplateParser implements Parser {
 
 	protected _sourceFile: ts.SourceFile;
-
 	protected _instancePropertyName: any;
 	protected _serviceClassName: string = 'TranslateService';
 	protected _serviceMethodNames: string[] = ['get', 'instant'];
 
 	public extract (contents: string, path: string): Translations {
 		let collection: Translations = new Translations();
-
 		this._sourceFile = this._createSourceFile(path, contents);
-
 		this._instancePropertyName = this._getInstancePropertyName();
 		if (!this._instancePropertyName) {
 			return collection;
 		}
-
 		const callNodes = this._findCallNodes();
 		callNodes.forEach(callNode => {
 			const keys: string[] = this._getCallArgStrings(callNode);
@@ -158,5 +154,4 @@ export class AstServiceParser extends AbstractTemplateParser implements Parser {
 			return result.concat(this._findNodes(childNode, kind));
 		}, initialValue);
 	}
-
 }

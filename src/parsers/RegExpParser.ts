@@ -16,7 +16,7 @@ export class RegExpParser extends AbstractTemplateParser implements Parser {
 		this.options.keys.forEach((key) => {
 			const regExp: RegExp = new RegExp(key, 'g');
 			let matches: RegExpExecArray | null;
-			while (matches = regExp.exec(template)) {
+			while (matches = regExp.exec(template)) { // tslint:disable-line
 				collection = collection.add(matches[1]);
 			}
 		});

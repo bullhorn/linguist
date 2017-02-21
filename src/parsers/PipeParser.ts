@@ -17,7 +17,7 @@ export class PipeParser extends AbstractTemplateParser implements Parser {
 		const regExp: RegExp = /(['"`])([^>\1\r\n'"`]*?)\1\s*\|\s*translate/g;
 		// const regExp: RegExp = /{{\\s?[']([^']+)['][^|]*\\|\\s?translate[^}]*}}/g;
 		let matches: RegExpExecArray | null;
-		while (matches = regExp.exec(template)) {
+		while (matches = regExp.exec(template)) { // tslint:disable-line
 			collection = collection.add(matches[2]);
 		}
 		return collection;
