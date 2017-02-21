@@ -1,6 +1,6 @@
 <img src="bully.png" align="left" width="130" />
 
-# linguist [![Build Status](https://travis-ci.org/bullhorn/linguist.svg?branch=master)](https://travis-ci.org/bullhorn/linguist) [![Coverage Status](https://coveralls.io/repos/bullhorn/linguist/badge.svg?branch=master)](https://coveralls.io/r/bullhorn/linguist?branch=master)
+# linguist [![Build Status](https://travis-ci.org/bullhorn/linguist.svg?branch=master)](https://travis-ci.org/bullhorn/linguist) [![Coverage Status](https://codecov.io/github/bullhorn/linguist/coverage.svg?branch=master)](https://codecov.io/gh/bullhorn/linguist)
 
 A CLI to help manage localization files developed and used by Bullhorn
 ## Installation
