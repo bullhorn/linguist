@@ -25,7 +25,7 @@ program
     .command('convert [lang] [to]')
     .description('Convert translations to new format')
     .option('-d, --dest <dest>', 'specify localization resources directory.')
-    .option('-f, --format <format>', 'specify output format. (json, xliff)')
+    .option('-f, --format <format>', 'specify output format. (json, namespaced-json, pot, xliff, xliff2)')
     .action((...args) => {
         let command: Convert = new Convert();
         command.run(...args);
@@ -68,15 +68,13 @@ program
     .description('Updates translation file with missing keys')
     .option('-s, --sources [sources]', 'specify source directories.')
     .option('-d, --dest <dest>', 'specify lang directory.')
-    .option('-f, --format <format>', 'specify output format. (json, xliff, pot)')
+    .option('-f, --format <format>', 'specify output format. (json, namespaced-json, pot, xliff, xliff2)')
     .option('-r, --replace', 'Replace the contents of output file if it exists (Merges by default).')
     .option('-c, --clean', 'Remove obsolete strings when merging.')
     .action((...args) => {
         let command: Extract = new Extract();
         command.run(...args);
     });
-
-
 
 program
     .command('*')

@@ -1,15 +1,17 @@
 <img src="bully.png" align="right" width="100" />
-
 # linguist
 
 > A CLI to help manage localization files
 
-### Installation
+## Installation
 
 ```npm install -g @bullhorn/linguist```
 
-### Configuration
-```json
+## Configuration
+
+Setup you `.linguistrc` file
+
+```
 {
     locale: 'en-US',          // default locale used for translations
     sources: ['./src'],       // list of directories to search for KEYS.
@@ -27,9 +29,11 @@
 }
 ```
 
-### Usage
+## Usage
 
-linguist check [lang]
+### Finding all the translations within your project files
+
+>  linguist check [lang]
 
 ```
 Usage: check [options] [lang]
@@ -46,7 +50,7 @@ Options:
 Sample output:
 
 ```
->  linguist check en-US
+$ linguist check en-US
 + Custom keys found, adding regular expression parser
 ✔︎ Extracted 109 strings from '/Projects/test/js'
 ✔︎ Extracted 349 strings from '/Projects/test/partials'
@@ -57,36 +61,79 @@ Sample output:
 ✗ Found 72 unused keys
 ```
 
-linguist extract [lang]
+### Updating you control language file with all keys
+
+> linguist extract [lang]
+
+```
+Usage: extract [options] [lang]
+
+Updates translation file with missing keys
+
+Options:
+    -h, --help               output usage information
+    -s, --sources [sources]  specify source directories.
+    -d, --dest <dest>        specify lang directory.
+    -f, --format <format>    specify output format. (json, xliff, pot)
+    -r, --replace            Replace the contents of output file if it exists (Merges by default).
+    -c, --clean              Remove obsolete strings when merging.
+```
 
 ``` 
->  linguist extract en-US
+$ linguist extract en-US
 ⠴ extracting...
 ✔︎ Extracted 100 strings from '/Projects/test/src'
 ✔︎ Saved to ./shared/i18n/de.json
 ```
 
-linguist translate [from]
+### Translating you control language
+
+> linguist translate [lang]
 
 ```
->  linguist translate de-DE
-// found 328 keys
-⠴ translating...
-translated 328 keys
-file written to ./shared/i18n/de-DE.json
+Usage: translate [options] [lang]
+
+Translate source file to new language
+
+Options:
+    -h, --help             output usage information
+    -d, --dest <dest>      specify localization resources directory.
+    -f, --format <format>  specify output format. (json, xliff)
 ```
 
-### Configuration
+```
+$ linguist translate de-DE
+* Loaded Control file
+✔︎ 1026 existing keys found
+✗ Missing 352 translations
+⠧ translating...350 of 352
+✔︎ Saved to './shared/i18n/de-DE.json'
+```
 
-setup you .linguistrc file
+### Convert
+
+> linguist convert [lang] [to]
+
 ```
-{
-    "locale": "en-US",
-    "source": "./*/public/**/*.@(js|html)",
-    "dest": "./shared/i18n",
-    "keys": [
-        "{{[^']*[']([^|]+)['][^']*\\s*\\|\\s*translate.*}}",
-        "<[^>]*translate[^>]*>([^<]*)"
-    ]
-}
+Usage: convert [options] [lang] [to]
+
+Convert translations to new format
+
+Options:
+    -h, --help             output usage information
+    -d, --dest <dest>      specify localization resources directory.
+    -f, --format <format>  specify output format. (json, xliff)
 ```
+
+```
+$ linguist convert -f xliff de-DE
+* Loaded Control file
+✔︎ Saved to './shared/i18n/de-DE.xlf'
+```
+
+### Testing
+
+To run all the unit tests, simply run:
+
+> yarn test
+
