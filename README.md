@@ -1,8 +1,8 @@
-<img src="bully.png" align="left" width="100" />
-# linguist  [![Build Status](https://travis-ci.org/bullhorn/linguist.svg?branch=master)](https://travis-ci.org/bullhorn/linguist) [![Coverage Status](https://coveralls.io/repos/bullhorn/linguist/badge.svg?branch=master)](https://coveralls.io/r/bullhorn/linguist?branch=master)
+<img src="bully.png" align="left" width="130" />
 
-A CLI to help manage localization files
+# linguist [![Build Status](https://travis-ci.org/bullhorn/linguist.svg?branch=master)](https://travis-ci.org/bullhorn/linguist) [![Coverage Status](https://coveralls.io/repos/bullhorn/linguist/badge.svg?branch=master)](https://coveralls.io/r/bullhorn/linguist?branch=master)
 
+A CLI to help manage localization files developed and used by Bullhorn
 ## Installation
 
 ```npm install -g @bullhorn/linguist```
