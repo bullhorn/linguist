@@ -11,7 +11,10 @@ export class Translations {
 	}
 
 	public add (key: string, val: string = ''): Translations {
-		return new Translations(Object.assign({}, this.values, { [key]: val }));
+		if (key.trim().length) {
+			return new Translations(Object.assign({}, this.values, { [key.trim()]: val }));
+		}
+		return new Translations(Object.assign({}, this.values));
 	}
 
 	public addKeys (keys: string[]): Translations {

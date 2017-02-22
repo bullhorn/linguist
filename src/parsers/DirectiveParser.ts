@@ -26,9 +26,10 @@ export class DirectiveParser extends AbstractTemplateParser implements Parser {
 				const $element = $(element);
 				const attr = $element.attr('translate') || $element.attr('ng2-translate');
 
-				if (attr) {
-					collection = collection.add(attr);
-				} else {
+				// The key is never the attribute value
+				// if (attr) {
+				// 	collection = collection.add(attr);
+				// } else {
 					$element
 						.contents()
 						.toArray()
@@ -36,7 +37,7 @@ export class DirectiveParser extends AbstractTemplateParser implements Parser {
 						.map(node => node.nodeValue.trim())
 						.filter(text => text.length > 0)
 						.forEach(text => collection = collection.add(text));
-				}
+				// }
 			});
 
 		return collection;
