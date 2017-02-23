@@ -14,7 +14,7 @@ export class ServiceParser extends AbstractTemplateParser implements Parser {
 
 		// const methodRegExp: RegExp = /(?:translate)\s*\(\s*(\[?\s*(['"`])([^\1\r\n]*)\2\s*\]?)/;
 		// const regExp: RegExp = new RegExp(`\\.${translateServiceVar}\\.${methodRegExp.source}`, 'g');
-		const regExp: RegExp = /\.(?:translate|localize)\s*\(\s*(\[?\s*(['"`])([^\1\r\n]*)\2\s*\]?)/g;
+		const regExp: RegExp = /\.(?:translate|localize)\s*\(\s*(\[?\s*(['"`])([^\1\r\n]*?)\2\s*\]?)/g;
 		let matches: RegExpExecArray | null;
 		while (matches = regExp.exec(contents)) { // tslint:disable-line
 			if (this._stringContainsArray(matches[1])) {
